@@ -1,11 +1,11 @@
 {
-    "name": "namdevel/ovoid-api",
+    "name": "dutta/ovoid-api",
     "description": "Un-official OVO ID API Wrapper",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Namdevel\\": "src/"
+            "Dutta\\": "src/"
         }
     },
     "authors": [

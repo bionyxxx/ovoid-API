@@ -14,7 +14,7 @@ Compliant with the July 18, 2021 OVO API update.
 Installation
 ------------
 ```
-composer require namdevel/ovoid-api
+composer require dutta/ovoid-api
 ```
 
 Features
