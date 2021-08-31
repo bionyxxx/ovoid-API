@@ -17,7 +17,6 @@ class Ovo
     @ Push Notification ID (SHA256 Hash)
     @ Generated from self::generateRandomSHA256();
     */
-    public $push_notif_id, $device_id;
     const api_url = 'https://api.ovo.id';
     const heusc_api = 'https://agw.heusc.id';
     const os_name = 'iOS';
@@ -28,15 +27,13 @@ class Ovo
     const action_mark = 'OVO Cash';
 
     private $auth_token;
+    public $push_notif_id, $device_id;
 
     public function __construct($auth_token = null, $device_id = null, $push_notif_id = null)
     {
         if ($device_id and $push_notif_id) {
-            $this->device_id = $device_id; // generated from self::generateUUIDV4();
-            $this->push_notif_id = $push_notif_id; // generated from self::generateRandomSHA256();
-        } else {
-            $this->device_id = '94508BA5-B41F-425C-BB08-D03A03AC63E2'; // generated from self::generateUUIDV4();
-            $this->push_notif_id = '3961627a2311328ca428dc1403d18a4d9f60b724d7a886081d88784cb928a684'; // generated from self::generateRandomSHA256();
+            $this->device_id = $device_id; // generated from generateUUIDV4();
+            $this->push_notif_id = $push_notif_id; // generated from generateRandomSHA256();
         }
 
         $this->auth_token = $auth_token;
@@ -205,7 +202,7 @@ class Ovo
     @ generateUUIDV4
     @ generate random UUIDV4 for device ID
     */
-    public function generateUUIDV4()
+    public static function generateUUIDV4()
     {
         $data = random_bytes(16);
         $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
@@ -217,7 +214,7 @@ class Ovo
     @ generateRandomSHA256
     @ generate random SHA256 hash for push notification ID
     */
-    public function generateRandomSHA256()
+    public static function generateRandomSHA256()
     {
         return hash_hmac('sha256', microtime(), 'namdevel_ovo_api');
     }
