@@ -19,19 +19,32 @@ composer require dutta/ovoid-api
 
 Features
 ------------
-- [x] login2FA
-- [x] login2FAVerify
-- [x] loginSecurityCode
-- [x] verifyOVOMember
-- [x] walletInquiry
-- [x] getAccountNo
-- [x] getAccountBalance
-- [x] getOvoPoint
-- [x] getBankList
-- [x] transactionHistory
-- [x] generateSignature `private` (for transfer more than 2 times)
-- [x] transferOvo
+- [x] Qris Payment `NEW`
 - [x] transferBank
+- [x] transferOvo
+- [x] sendOtp
+- [x] OTPVerify
+- [x] getAuthToken
+- [x] getLastTransactions
+- [x] getFavoriteTransfer
+- [x] getEmail
+- [x] transactionHistory
+- [x] walletInquiry
+- [x] getOvoCash
+- [x] getOvoCashCardNumber
+- [x] getOvoPointsCardNumber
+- [x] getOvoPoints
+- [x] getPointDetails
+- [x] getBillerList
+- [x] getBillerCategory
+- [x] generateSignature (for transfer more than 2 times)
+- [x] getDenominations
+- [x] isOVO
+- [x] getBankList
+- [x] getUnreadNotifications
+- [x] getAllNotifications
+- [x] getInvestment
+- [x] getTransactionDetails
 
 License
 ------------
