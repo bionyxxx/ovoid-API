@@ -21,13 +21,13 @@ class Ovo
     @ Device ID (UUIDV4)
     @ Generated from self::generateUUIDV4();
     */
-    const device_id = "6AA4E427-D1B4-4B7E-9C22-F4C0F86F2CFD";
+    const device_id = "AF6DFC45-FEEA-4453-9D69-1225EAADAB9D";
     
     /*
     @ Push Notification ID (SHA256 Hash)
     @ Generated from self::generateRandomSHA256();
     */
-    const push_notification_id = "e35f5a9fc1b61d0ab0c83ee5ca05ce155f82dcffee0605f1c70de38e662db362";
+    const push_notification_id = "f2d7de8f09edea8d879b654850d0f2b29f829d303c755ef4a18e25dd72308f6e";
     
     protected $auth_token, $hmac_hash, $hmac_hash_random;
     
