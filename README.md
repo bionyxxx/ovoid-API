@@ -15,7 +15,7 @@ Compliant with the March 04, 2022 OVO API update (version 3.54.0)
 Installation
 ------------
 ```
-composer require namdevel/ovoid-api
+composer require dutta/ovoid-api
 ```
 
 Features
