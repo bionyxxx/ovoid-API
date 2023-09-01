@@ -23,18 +23,20 @@ class Ovo
     @ Device ID (UUIDV4)
     @ Generated from self::generateUUIDV4();
     */
-    const device_id = "AF6DFC45-FEEA-4453-9D69-1225EAADAB9D";
 
     /*
     @ Push Notification ID (SHA256 Hash)
     @ Generated from self::generateRandomSHA256();
     */
-    const push_notification_id = "f2d7de8f09edea8d879b654850d0f2b29f829d303c755ef4a18e25dd72308f6e";
     // generate id https://onecompiler.com/php/3zhsacjgc
     protected $auth_token, $hmac_hash, $hmac_hash_random;
+    private $device_id, $push_notification_id;
 
-    public function __construct($auth_token = false)
+    public function __construct($device_id, $push_notification_id, $auth_token = false)
     {
+        $this->device_id = $device_id; // Generated from self::generateUUIDV4();
+        $this->push_notification_id = $push_notification_id; // Generated from self::generateRandomSHA256();
+        
         if ($auth_token) {
             $this->auth_token = $auth_token;
         }
@@ -72,7 +74,7 @@ class Ovo
             'accept: */*',
             'app-version: ' . self::app_version,
             'client-id: ' . self::client_id,
-            'device-id: ' . self::device_id,
+            'device-id: ' . $this->device_id,
             'os: ' . self::os,
             'user-agent: ' . self::user_agent
         );
@@ -93,7 +95,7 @@ class Ovo
     {
         $field = array(
             'msisdn' => $phone_number,
-            'device_id' => self::device_id,
+            'device_id' => $this->device_id,
             'otp' => array(
                 'locale' => 'EN',
                 'sms_hash' => 'abc'
@@ -119,7 +121,7 @@ class Ovo
                 'type' => 'LOGIN'
             ),
             'msisdn' => $phone_number,
-            'device_id' => self::device_id
+            'device_id' => $this->device_id
         );
 
         return self::request(self::AGW_API . '/v3/user/accounts/otp/validation', $field, $this->headers());
@@ -134,8 +136,8 @@ class Ovo
     {
         $field = array(
             'msisdn' => $phone_number,
-            'device_id' => self::device_id,
-            'push_notification_id' => self::push_notification_id,
+            'device_id' => $this->device_id,
+            'push_notification_id' => $this->push_notification_id,
             'credentials' => array(
                 'otp_token' => $otp_token,
                 'password' => array(
@@ -199,9 +201,9 @@ class Ovo
             'LOGIN',
             $security_code,
             time(),
-            self::device_id,
+            $this->device_id,
             $phone_number,
-            self::device_id,
+            $this->device_id,
             $otp_ref_id
         ));
         openssl_public_encrypt($data, $output, $rsa_key);
@@ -457,7 +459,7 @@ class Ovo
         return sha1(join('||', array(
             $trx_id,
             $amount,
-            self::device_id
+            $this->device_id
         )));
     }
 
@@ -555,7 +557,7 @@ class Ovo
                 'deviceBrand' => 'Apple',
                 'deviceModel' => 'iPhone',
                 'appVersion' => self::app_version,
-                'deviceToken' => self::push_notification_id
+                'deviceToken' => $this->push_notification_id
             ),
             'paymentDetail' => array(
                 array(
