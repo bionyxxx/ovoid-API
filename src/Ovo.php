@@ -46,7 +46,7 @@ class Ovo
     @ generateUUIDV4
     @ generate random UUIDV4 for device ID
     */
-    public function generateUUIDV4()
+    public static function generateUUIDV4()
     {
         $data = random_bytes(16);
         $data[6] = chr((ord($data[6]) & 0x0f) | 0x40);
@@ -58,7 +58,7 @@ class Ovo
     @ generateRandomSHA256
     @ generate random SHA256 hash for push notification ID
     */
-    public function generateRandomSHA256()
+    public static function generateRandomSHA256()
     {
         return hash_hmac("sha256", time(), "ovo-apps");
     }
